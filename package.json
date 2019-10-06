@@ -51,7 +51,7 @@
   "main": "lib/index.js",
   "oclif": {
     "commands": "./lib/commands",
-    "bin": "heroku-deploy",
+    "bin": "herokudep",
     "plugins": [
       "@oclif/plugin-help"
     ]
