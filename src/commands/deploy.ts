@@ -7,8 +7,8 @@ const simpleGit = require("simple-git/promise")().outputHandler((_: any, stdout:
   stdout.pipe(process.stdout);
   stderr.pipe(process.stderr);
 })
-import { formHerokuGitUrl } from "../../utils";
-import { checkApplicationHealth, rollbackDeployment } from "../../utils";
+import { formHerokuGitUrl } from "../utils";
+import { checkApplicationHealth, rollbackDeployment } from "../utils";
 
 
 

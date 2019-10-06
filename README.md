@@ -28,7 +28,26 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
+* [`herokudep deploy`](#herokudep-deploy)
 * [`herokudep help [COMMAND]`](#herokudep-help-command)
+
+## `herokudep deploy`
+
+Deploy heroku applications using one command
+
+```
+USAGE
+  $ herokudep deploy
+
+OPTIONS
+  -a, --app=app        (required) app to run command against
+  -a, --token=token    (required) Heroku api token
+  -h, --help           show CLI help
+  -r, --remote=remote  git remote of app to use
+  -v, --version        show CLI version
+```
+
+_See code: [src/commands/deploy.ts](https://github.com/banphlet/heroku-dep/blob/v0.0.0/src/commands/deploy.ts)_
 
 ## `herokudep help [COMMAND]`
 
