@@ -16,27 +16,27 @@ Simple Cli for managing heroku deployments
 <!-- usage -->
 ```sh-session
 $ npm install -g @strellio/heroku-dep
-$ heroku-deploy COMMAND
+$ dep-heroku COMMAND
 running command...
-$ heroku-deploy (-v|--version|version)
+$ dep-heroku (-v|--version|version)
 @strellio/heroku-dep/0.0.0 darwin-x64 node-v8.16.1
-$ heroku-deploy --help [COMMAND]
+$ dep-heroku --help [COMMAND]
 USAGE
-  $ heroku-deploy COMMAND
+  $ dep-heroku COMMAND
 ...
 ```
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`heroku-deploy help [COMMAND]`](#heroku-deploy-help-command)
+* [`dep-heroku help [COMMAND]`](#dep-heroku-help-command)
 
-## `heroku-deploy help [COMMAND]`
+## `dep-heroku help [COMMAND]`
 
-display help for heroku-deploy
+display help for dep-heroku
 
 ```
 USAGE
-  $ heroku-deploy help [COMMAND]
+  $ dep-heroku help [COMMAND]
 
 ARGUMENTS
   COMMAND  command to show help for
