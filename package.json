@@ -1,10 +1,10 @@
 {
-  "name": "@strellio/heroku-dep",
+  "name": "@strellio/herokudep",
   "description": "Simple Cli for managing heroku deployments",
   "version": "0.0.0",
   "author": "Nana Kwame Zoe @banphlet",
   "bin": {
-    "dep-heroku": "./bin/run"
+    "herokudep": "./bin/run"
   },
   "bugs": "https://github.com/banphlet/heroku-dep/issues",
   "dependencies": {

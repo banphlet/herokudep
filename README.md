@@ -1,12 +1,12 @@
-@strellio/heroku-dep
+@strellio/herokudep
 ====================
 
 Simple Cli for managing heroku deployments
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/@strellio/heroku-dep.svg)](https://npmjs.org/package/@strellio/heroku-dep)
-[![Downloads/week](https://img.shields.io/npm/dw/@strellio/heroku-dep.svg)](https://npmjs.org/package/@strellio/heroku-dep)
-[![License](https://img.shields.io/npm/l/@strellio/heroku-dep.svg)](https://github.com/banphlet/heroku-dep/blob/master/package.json)
+[![Version](https://img.shields.io/npm/v/@strellio/herokudep.svg)](https://npmjs.org/package/@strellio/herokudep)
+[![Downloads/week](https://img.shields.io/npm/dw/@strellio/herokudep.svg)](https://npmjs.org/package/@strellio/herokudep)
+[![License](https://img.shields.io/npm/l/@strellio/herokudep.svg)](https://github.com/banphlet/herokudep/blob/master/package.json)
 
 <!-- toc -->
 * [Usage](#usage)
@@ -15,28 +15,28 @@ Simple Cli for managing heroku deployments
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g @strellio/heroku-dep
-$ dep-heroku COMMAND
+$ npm install -g @strellio/herokudep
+$ herokudep COMMAND
 running command...
-$ dep-heroku (-v|--version|version)
-@strellio/heroku-dep/0.0.0 darwin-x64 node-v8.16.1
-$ dep-heroku --help [COMMAND]
+$ herokudep (-v|--version|version)
+@strellio/herokudep/0.0.0 darwin-x64 node-v8.16.1
+$ herokudep --help [COMMAND]
 USAGE
-  $ dep-heroku COMMAND
+  $ herokudep COMMAND
 ...
 ```
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`dep-heroku help [COMMAND]`](#dep-heroku-help-command)
+* [`herokudep help [COMMAND]`](#herokudep-help-command)
 
-## `dep-heroku help [COMMAND]`
+## `herokudep help [COMMAND]`
 
-display help for dep-heroku
+display help for herokudep
 
 ```
 USAGE
-  $ dep-heroku help [COMMAND]
+  $ herokudep help [COMMAND]
 
 ARGUMENTS
   COMMAND  command to show help for
