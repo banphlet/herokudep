@@ -1,0 +1,68 @@
+{
+  "name": "@strellio/heroku-dep",
+  "description": "Simple Cli for managing heroku deployments",
+  "version": "0.0.0",
+  "author": "Nana Kwame Zoe @banphlet",
+  "bin": {
+    "dep-heroku": "./bin/run"
+  },
+  "bugs": "https://github.com/banphlet/heroku-dep/issues",
+  "dependencies": {
+    "@heroku-cli/command": "8.2.14",
+    "@oclif/command": "1.5.19",
+    "@oclif/config": "1.13.3",
+    "@oclif/plugin-help": "2.2.1",
+    "got": "9.6.0",
+    "simple-git": "1.126.0",
+    "tslib": "1.10.0"
+  },
+  "devDependencies": {
+    "@heroku-cli/schema": "1.0.25",
+    "@oclif/dev-cli": "1.22.2",
+    "@oclif/test": "1.2.5",
+    "@oclif/tslint": "3.1.1",
+    "@types/chai": "4.2.3",
+    "@types/got": "9.6.7",
+    "@types/mocha": "5.2.7",
+    "@types/node": "10.14.20",
+    "chai": "4.2.0",
+    "debug": "4.1.1",
+    "globby": "10.0.1",
+    "mocha": "5.2.0",
+    "nyc": "13.3.0",
+    "ts-node": "8.4.1",
+    "tslint": "5.20.0",
+    "typescript": "3.6.3"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/lib",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json"
+  ],
+  "homepage": "https://github.com/banphlet/heroku-dep",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "oclif": {
+    "commands": "./lib/commands",
+    "bin": "heroku-deploy",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "repository": "banphlet/heroku-dep",
+  "scripts": {
+    "postpack": "rm -f oclif.manifest.json",
+    "posttest": "tslint -p test -t stylish",
+    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
+    "version": "oclif-dev readme && git add README.md"
+  },
+  "types": "lib/index.d.ts"
+}
