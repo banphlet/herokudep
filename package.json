@@ -1,7 +1,7 @@
 {
-  "name": "@strellio/herokudep",
+  "name": "@banphlet/herokudep",
   "description": "Simple Cli for managing heroku deployments",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": "Nana Kwame Zoe @banphlet",
   "bin": {
     "herokudep": "./bin/run"
@@ -50,7 +50,6 @@
     "deployment",
     "heroku"
   ],
-  "private": false,
   "license": "MIT",
   "main": "lib/index.js",
   "oclif": {
