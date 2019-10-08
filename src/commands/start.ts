@@ -1,18 +1,27 @@
 #!/usr/bin/env node
-
-import { Command, flags } from "@heroku-cli/command"
 const debug = require("debug")("@strellio/dep-heroku")
+import { Command, flags } from "@heroku-cli/command"
 import * as git from 'simple-git/promise';
+import { formHerokuGitUrl } from "../utils";
 
 const simpleGit = git().outputHandler((_: any, stdout: any, stderr: any) => {
     stdout.pipe(process.stdout);
     stderr.pipe(process.stderr);
 })
+
 import { readServicesJson, parseString, writeFile } from "../utils";
+import Deploy from './deploy'
 
 
 
-class Start extends Command {
+interface AppsInterface {
+    name: string,
+    web?: string,
+    release?: string
+}
+
+
+export default class Start extends Command {
     static description = 'Deploy services to different apps on heroku'
 
     static flags = {
@@ -31,19 +40,18 @@ class Start extends Command {
         const json = parseString(servicesJson)
 
         if (!json.apps || !json.apps.length) return this.error("apps in service.json cannot be empty")
-        const apps = json.apps
+        const apps: Array<AppsInterface> = json.apps
         for (const app of apps) {
+            this.log(`Processing service with name ${app.name}`)
             let profileCommands = ''
             if (app.web) profileCommands += `web: ${app.web} \n`
             if (app.release) profileCommands += `release: ${app.release}`
             writeFile(profileCommands)
-
+            await simpleGit.add("Procfile")
             await simpleGit.raw(["commit", "--amend", "--no-edit"])
-
-            console.log(profileCommands)
+            await simpleGit.pull(formHerokuGitUrl(flags.token, app.name), "master")
+            await Deploy.run([`-a ${app.name}`, `-t ${flags.token} `])
         }
 
     }
 }
-
-export = Start

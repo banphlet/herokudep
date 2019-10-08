@@ -3,16 +3,22 @@
 import { Command, flags } from "@heroku-cli/command"
 import * as Heroku from '@heroku-cli/schema'
 const debug = require("debug")("@strellio/dep-heroku")
-const simpleGit = require("simple-git/promise")().outputHandler((_: any, stdout: any, stderr: any) => {
+import * as git from 'simple-git/promise';
+import { trim } from 'lodash'
+
+
+const simpleGit = git().outputHandler((_: any, stdout: any, stderr: any) => {
   stdout.pipe(process.stdout);
   stderr.pipe(process.stderr);
 })
+
+
 import { formHerokuGitUrl } from "../utils";
 import { checkApplicationHealth, rollbackDeployment } from "../utils";
 
 
 
-class StrellioDepHeroku extends Command {
+export default class Deploy extends Command {
   static description = 'Deploy heroku applications using one command'
 
   static flags = {
@@ -20,22 +26,28 @@ class StrellioDepHeroku extends Command {
     version: flags.version({ char: 'v' }),
     help: flags.help({ char: 'h' }),
     remote: flags.remote(),
-    app: flags.app({ required: true }),
-    token: flags.app({ required: true, description: "Heroku api token" })
+    app: flags.app({ char: "a", required: true }),
+    token: flags.app({ char: "t", required: true, description: "Heroku api token" })
   }
 
   rollbackDeployment = async (error: any) => {
-    const { flags } = this.parse(StrellioDepHeroku)
+    const { flags } = this.parse(Deploy)
+    const app = trim(flags.app)
     this.warn(`Deployment failed with statusCode ${error.statusCode}.Rolling back`)
-    await rollbackDeployment(this.heroku, flags.app)
+    await rollbackDeployment(this.heroku, app)
     this.log("rollback completed")
   }
 
   async run() {
-    const { flags } = this.parse(StrellioDepHeroku)
-    process.env.HEROKU_API_KEY = flags.token
+    const { flags } = this.parse(Deploy)
+    const token = trim(flags.token)
+    process.env.HEROKU_API_KEY = token
+    const app = trim(flags.app)
     debug("Testing heroku api key")
-    await this.heroku.get<Heroku.App>(`/apps/${flags.app}`).catch(() => this.error("Invalid HEROKU_API_KEY"))
+    await this.heroku.get<Heroku.App>(`/apps/${app}`).catch((e: any) => {
+      const error = e.body
+      this.error(error.message)
+    })
 
     debug("Deploying heroku application")
     const isGitRepo = await simpleGit.checkIsRepo()
@@ -43,9 +55,7 @@ class StrellioDepHeroku extends Command {
 
     debug("Push to heroku master")
     this.log("Deploying to application")
-    await simpleGit.push(formHerokuGitUrl(flags.token, flags.app), "master").catch((error: any) => this.error(`Error pushing to heroku ${error.message}`))
-    return checkApplicationHealth(flags.app).then(() => this.log("Deployment to heroku succeeded :)")).catch(this.rollbackDeployment)
+    await simpleGit.push(formHerokuGitUrl(token, app), "master").catch((error: any) => this.error(`Error pushing to heroku ${error.message}`))
+    return checkApplicationHealth(app).then(() => this.log("Deployment to heroku succeeded :)")).catch(this.rollbackDeployment)
   }
 }
-
-export = StrellioDepHeroku

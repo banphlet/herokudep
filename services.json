@@ -1,7 +1,11 @@
 {
     "apps": [
         {
-            "app_name": "smartbot",
+            "name": "smartbotapi-staging",
+            "web": "npm start"
+        },
+        {
+            "name": "smartbot",
             "web": "npm start"
         }
     ]

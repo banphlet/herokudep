@@ -4,14 +4,14 @@ import { readFile, writeFileSync } from 'fs'
 
 const readFileSyncPromise = util.promisify(readFile)
 
-export const formHerokuGitUrl = (apiKey: String, appName: String) => `https://heroku:${apiKey}@git.heroku.com/${appName}.git`
+export const formHerokuGitUrl = (apiKey: string, appName: string) => `https://heroku:${apiKey}@git.heroku.com/${appName}.git`
 
 
-export const checkApplicationHealth = (appName: String) => got(`https://${appName}.herokuapp.com/health`)
+export const checkApplicationHealth = (appName: string) => got(`https://${appName}.herokuapp.com/health`)
 
 
 
-let findReleases = function (heroku: any, app: String): Promise<any> {
+let findReleases = function (heroku: any, app: string): Promise<any> {
     return heroku.get(`/apps/${app}/releases`, {
         partial: true,
         headers: { 'Range': 'version ..; max=10, order=desc' }
@@ -20,7 +20,7 @@ let findReleases = function (heroku: any, app: String): Promise<any> {
 
 
 
-export const rollbackDeployment = (heroku: any, app: String, release?: String) => {
+export const rollbackDeployment = (heroku: any, app: string, release?: string) => {
     let id = (release || 'current').toLowerCase()
     id = id.startsWith('v') ? id.slice(1) : id
     if (id === 'current') {
