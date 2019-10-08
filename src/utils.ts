@@ -1,5 +1,8 @@
 import * as got from 'got'
+import * as util from 'util'
+import { readFile, writeFileSync } from 'fs'
 
+const readFileSyncPromise = util.promisify(readFile)
 
 export const formHerokuGitUrl = (apiKey: String, appName: String) => `https://heroku:${apiKey}@git.heroku.com/${appName}.git`
 
@@ -24,5 +27,28 @@ export const rollbackDeployment = (heroku: any, app: String, release?: String) =
         return findReleases(heroku, app).then(response => response.body).then(releases => releases.find((release: any) => release.status === "succeeded")[1])
     } else {
         return heroku.get(`/apps/${app}/releases/${id}`).then((response: any) => response.body)
+    }
+}
+
+export const readServicesJson = async (errorHandler: Function) => {
+    const currentDir = process.cwd()
+    try {
+        const file = await readFileSyncPromise(`${currentDir}/services.json`, { encoding: "utf-8" })
+        return file
+    } catch (error) {
+        errorHandler("No services.json file found. Run this command from your application root directory where the services.json file exist")
+    }
+
+}
+
+export const writeFile = (str: string) => writeFileSync(`${process.cwd()}/Procfile`, str)
+
+
+
+export const parseString = (str: string) => {
+    try {
+        return JSON.parse(str)
+    } catch (error) {
+        return str
     }
 }

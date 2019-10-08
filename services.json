@@ -1,0 +1,8 @@
+{
+    "apps": [
+        {
+            "app_name": "smartbot",
+            "web": "npm start"
+        }
+    ]
+}
