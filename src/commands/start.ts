@@ -47,7 +47,6 @@ export default class Start extends Command {
       await simpleGit.raw(["config", "user.name", "herokudep"])
       await simpleGit.add('Procfile')
       await simpleGit.raw(['commit', '--amend', '--no-edit'])
-      await simpleGit.pull(formHerokuGitUrl(flags.token, app.name), 'master')
       await Deploy.run([`-a ${app.name}`, `-t ${flags.token} `])
     }
 

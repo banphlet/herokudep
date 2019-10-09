@@ -16,7 +16,7 @@ const simpleGit = git().outputHandler((_: any, stdout: any, stderr: any) => {
 
 export default class Deploy extends Command {
   static description = 'Deploy heroku applications using one command'
-  static usage = "herokudep deploy -t your-token-here -a heroku-app-name"
+  static usage = "deploy -t your-token-here -a heroku-app-name"
   static examples = [
     '$ herokudep deploy -t dsfsdfsdfsdf -a test-app',
   ]
@@ -55,7 +55,7 @@ export default class Deploy extends Command {
 
     debug('Push to heroku master')
     this.log('Deploying to application')
-    await simpleGit.push(formHerokuGitUrl(token, app), 'master').catch((error: any) => this.error(`Error pushing to heroku ${error.message}`))
+    await simpleGit.push(formHerokuGitUrl(token, app), 'master', { "--force": true }).catch((error: any) => this.error(`Error pushing to heroku ${error.message}`))
     return checkApplicationHealth(app).then(() => this.log('Deployment to heroku succeeded :)')).catch(this.rollbackDeployment)
   }
 }
