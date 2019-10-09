@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 const debug = require('debug')('@strellio/dep-heroku')
-import { Command, flags } from '@heroku-cli/command'
+import {Command, flags} from '@heroku-cli/command'
 import * as git from 'simple-git/promise'
 
-import { formHerokuGitUrl, parseString, readServicesJson, writeFile } from '../utils'
+import {parseString, readServicesJson, writeFile} from '../utils'
 
 import Deploy from './deploy'
 
@@ -23,13 +23,13 @@ export default class Start extends Command {
 
   static flags = {
     // add --version flag to shocw CLI version
-    version: flags.version({ char: 'v' }),
-    help: flags.help({ char: 'h' }),
-    token: flags.app({ char: 't', required: true, description: 'Heroku api token' })
+    version: flags.version({char: 'v'}),
+    help: flags.help({char: 'h'}),
+    token: flags.app({char: 't', required: true, description: 'Heroku api token'})
   }
 
   async run() {
-    const { flags } = this.parse(Start)
+    const {flags} = this.parse(Start)
     debug('Reading services.json file')
     const servicesJson = await readServicesJson(this.error)
     if (!servicesJson) return this.error('services.json cannot be empty')
@@ -43,8 +43,8 @@ export default class Start extends Command {
       if (app.web) profileCommands += `web: ${app.web} \n`
       if (app.release) profileCommands += `release: ${app.release}`
       writeFile(profileCommands)
-      await simpleGit.raw(["config", "user.email", "herokudep@herokuap.com"])
-      await simpleGit.raw(["config", "user.name", "herokudep"])
+      await simpleGit.raw(['config', 'user.email', 'herokudep@herokuap.com'])
+      await simpleGit.raw(['config', 'user.name', 'herokudep'])
       await simpleGit.add('Procfile')
       await simpleGit.raw(['commit', '--amend', '--no-edit'])
       await Deploy.run([`-a ${app.name}`, `-t ${flags.token} `])
