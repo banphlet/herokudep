@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
-import {Command, flags} from '@heroku-cli/command'
+import { Command, flags } from '@heroku-cli/command'
 import * as Heroku from '@heroku-cli/schema'
 // tslint:disable-next-line
 import { trim } from 'lodash'
 import * as git from 'simple-git/promise'
 
-import {checkApplicationHealth, formHerokuGitUrl, rollbackDeployment} from '../utils'
+import { checkApplicationHealth, formHerokuGitUrl, rollbackDeployment } from '../utils'
 const debug = require('debug')('@strellio/dep-heroku')
 
 const simpleGit = git().outputHandler((_: any, stdout: any, stderr: any) => {
@@ -16,18 +16,22 @@ const simpleGit = git().outputHandler((_: any, stdout: any, stderr: any) => {
 
 export default class Deploy extends Command {
   static description = 'Deploy heroku applications using one command'
+  static usage = "herokudep deploy -t your-token-here -a heroku-app-name"
+  static examples = [
+    '$ herokudep deploy -t dsfsdfsdfsdf -a test-app',
+  ]
 
   static flags = {
     // add --version flag to shocw CLI version
-    version: flags.version({char: 'v'}),
-    help: flags.help({char: 'h'}),
+    version: flags.version({ char: 'v' }),
+    help: flags.help({ char: 'h' }),
     remote: flags.remote(),
-    app: flags.app({char: 'a', required: true}),
-    token: flags.app({char: 't', required: true, description: 'Heroku api token'})
+    app: flags.app({ char: 'a', required: true }),
+    token: flags.app({ char: 't', required: true, description: 'Heroku api token' })
   }
 
   rollbackDeployment = async (error: any) => {
-    const {flags} = this.parse(Deploy)
+    const { flags } = this.parse(Deploy)
     const app = trim(flags.app)
     this.warn(`Deployment failed with statusCode ${error.statusCode}.Rolling back`)
     await rollbackDeployment(this.heroku, app)
@@ -35,7 +39,7 @@ export default class Deploy extends Command {
   }
 
   async run() {
-    const {flags} = this.parse(Deploy)
+    const { flags } = this.parse(Deploy)
     const token = trim(flags.token)
     process.env.HEROKU_API_KEY = token
     const app = trim(flags.app)
