@@ -1,7 +1,7 @@
 {
   "name": "@banphlet/herokudep",
   "description": "Simple Cli for managing heroku deployments",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "Nana Kwame Zoe @banphlet",
   "bin": {
     "herokudep": "./bin/run"

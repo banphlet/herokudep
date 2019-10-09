@@ -19,7 +19,7 @@ $ npm install -g @banphlet/herokudep
 $ herokudep COMMAND
 running command...
 $ herokudep (-v|--version|version)
-@banphlet/herokudep/0.0.3 darwin-x64 node-v8.16.1
+@banphlet/herokudep/0.0.4 darwin-x64 node-v8.16.1
 $ herokudep --help [COMMAND]
 USAGE
   $ herokudep COMMAND
@@ -48,7 +48,7 @@ OPTIONS
   -v, --version        show CLI version
 ```
 
-_See code: [src/commands/deploy.ts](https://github.com/banphlet/strellio-herokudep/blob/v0.0.3/src/commands/deploy.ts)_
+_See code: [src/commands/deploy.ts](https://github.com/banphlet/herokudep/blob/v0.0.4/src/commands/deploy.ts)_
 
 ## `herokudep help [COMMAND]`
 
@@ -81,5 +81,5 @@ OPTIONS
   -v, --version      show CLI version
 ```
 
-_See code: [src/commands/start.ts](https://github.com/banphlet/strellio-herokudep/blob/v0.0.3/src/commands/start.ts)_
+_See code: [src/commands/start.ts](https://github.com/banphlet/herokudep/blob/v0.0.4/src/commands/start.ts)_
 <!-- commandsstop -->
