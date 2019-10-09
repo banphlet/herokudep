@@ -28,17 +28,17 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`herokudep deploy`](#herokudep-deploy)
+* [`herokudep herokudep deploy -t your-token-here -a heroku-app-name`](#herokudep-herokudep-deploy--t-your-token-here--a-heroku-app-name)
 * [`herokudep help [COMMAND]`](#herokudep-help-command)
 * [`herokudep start`](#herokudep-start)
 
-## `herokudep deploy`
+## `herokudep herokudep deploy -t your-token-here -a heroku-app-name`
 
 Deploy heroku applications using one command
 
 ```
 USAGE
-  $ herokudep deploy
+  $ herokudep herokudep deploy -t your-token-here -a heroku-app-name
 
 OPTIONS
   -a, --app=app        (required) app to run command against
@@ -46,6 +46,9 @@ OPTIONS
   -r, --remote=remote  git remote of app to use
   -t, --token=token    (required) Heroku api token
   -v, --version        show CLI version
+
+EXAMPLE
+  $ herokudep deploy -t dsfsdfsdfsdf -a test-app
 ```
 
 _See code: [src/commands/deploy.ts](https://github.com/banphlet/herokudep/blob/v0.0.4/src/commands/deploy.ts)_
