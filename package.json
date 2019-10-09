@@ -6,7 +6,7 @@
   "bin": {
     "herokudep": "./bin/run"
   },
-  "bugs": "https://github.com/banphlet/strellio-herokudep/issues",
+  "bugs": "https://github.com/banphlet/herokudep/issues",
   "dependencies": {
     "@heroku-cli/command": "8.2.14",
     "@oclif/command": "1.5.19",
@@ -43,7 +43,7 @@
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
-  "homepage": "https://github.com/banphlet/strellio-herokudep",
+  "homepage": "https://github.com/banphlet/herokudep",
   "keywords": [
     "oclif",
     "heroku-deployment",
@@ -59,7 +59,7 @@
       "@oclif/plugin-help"
     ]
   },
-  "repository": "banphlet/strellio-herokudep",
+  "repository": "banphlet/herokudep",
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "tslint --fix -p test -t stylish",
