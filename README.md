@@ -30,6 +30,7 @@ USAGE
 <!-- commands -->
 * [`herokudep deploy`](#herokudep-deploy)
 * [`herokudep help [COMMAND]`](#herokudep-help-command)
+* [`herokudep start`](#herokudep-start)
 
 ## `herokudep deploy`
 
@@ -41,9 +42,9 @@ USAGE
 
 OPTIONS
   -a, --app=app        (required) app to run command against
-  -a, --token=token    (required) Heroku api token
   -h, --help           show CLI help
   -r, --remote=remote  git remote of app to use
+  -t, --token=token    (required) Heroku api token
   -v, --version        show CLI version
 ```
 
@@ -65,4 +66,20 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.1/src/commands/help.ts)_
+
+## `herokudep start`
+
+Deploy services to different apps on heroku
+
+```
+USAGE
+  $ herokudep start
+
+OPTIONS
+  -h, --help         show CLI help
+  -t, --token=token  (required) Heroku api token
+  -v, --version      show CLI version
+```
+
+_See code: [src/commands/start.ts](https://github.com/banphlet/strellio-herokudep/blob/v0.0.1/src/commands/start.ts)_
 <!-- commandsstop -->
