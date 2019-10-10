@@ -1,7 +1,7 @@
 @banphlet/herokudep
 ====================
 
-Simple Cli for managing heroku deployments. This Cli allows to deploy single or multiple heroku apps. After each deployment we make a request the application health route `/health`. Ensure your have provided a health route in your application with the path `/health`.
+Simple Cli for managing heroku deployments. This Cli allows you to deploy single or multiple heroku apps. After each deployment we make a request to the application health route `/health`. Ensure you have provided a health route in your application with the path `/health`.
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/@banphlet/herokudep.svg)](https://npmjs.org/package/@banphlet/herokudep)
