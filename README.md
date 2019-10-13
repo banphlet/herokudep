@@ -1,7 +1,7 @@
 @banphlet/herokudep
 ====================
 
-Simple Cli for managing heroku deployments. This Cli allows you to deploy single or multiple heroku apps. After each deployment we make a request to the application health route `/health`. Ensure you have provided a health route in your application with the path `/health`.
+Simple Cli for managing heroku deployments. This Cli allows you to deploy single or multiple heroku apps. After each deployment we make a request to the application health route `/health`. Ensure you have provided a health route in your application with the path `/health` or you can pass `-s`to skip checking the application health.
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/@banphlet/herokudep.svg)](https://npmjs.org/package/@banphlet/herokudep)
@@ -19,7 +19,7 @@ $ npm install -g @banphlet/herokudep
 $ herokudep COMMAND
 running command...
 $ herokudep (-v|--version|version)
-@banphlet/herokudep/0.0.4 darwin-x64 node-v8.16.1
+@banphlet/herokudep/0.1.0 darwin-x64 node-v8.16.1
 $ herokudep --help [COMMAND]
 USAGE
   $ herokudep COMMAND
@@ -28,30 +28,31 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`herokudep herokudep deploy -t your-token-here -a heroku-app-name`](#herokudep-herokudep-deploy--t-your-token-here--a-heroku-app-name)
+* [`herokudep deploy`](#herokudep-deploy)
 * [`herokudep help [COMMAND]`](#herokudep-help-command)
 * [`herokudep start`](#herokudep-start)
 
-## `herokudep herokudep deploy -t your-token-here -a heroku-app-name`
+## `herokudep deploy`
 
-Deploy heroku applications using one command
+Deploy heroku applications using one command.
 
 ```
 USAGE
-  $ herokudep herokudep deploy -t your-token-here -a heroku-app-name
+  $ herokudep deploy
 
 OPTIONS
-  -a, --app=app        (required) app to run command against
-  -h, --help           show CLI help
-  -r, --remote=remote  git remote of app to use
-  -t, --token=token    (required) Heroku api token
-  -v, --version        show CLI version
+  -a, --app=app                          (required) app to run command against
+  -h, --help                             show CLI help
+  -s, --skipHealthCheck=skipHealthCheck  [default: false] Skip checking /health endpoint for application health status
+  -t, --token=token                      (required) Heroku api token
+  -v, --version                          show CLI version
 
-EXAMPLE
-  $ herokudep deploy -t dsfsdfsdfsdf -a test-app
+EXAMPLES
+  $ herokudep deploy -t heroku-token -a heroku-app
+  $ herokudep deploy -t heroku-token -a heroku-app -s // pass -s to skip checking application health
 ```
 
-_See code: [src/commands/deploy.ts](https://github.com/banphlet/herokudep/blob/v0.0.4/src/commands/deploy.ts)_
+_See code: [src/commands/deploy.ts](https://github.com/banphlet/herokudep/blob/v0.1.0/src/commands/deploy.ts)_
 
 ## `herokudep help [COMMAND]`
 
@@ -72,7 +73,7 @@ _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.1
 
 ## `herokudep start`
 
-Deploy services to different apps on heroku
+Deploy multiple services to different heroku apps.  Requires you have services.json in the root of your application
 
 ```
 USAGE
@@ -82,7 +83,14 @@ OPTIONS
   -h, --help         show CLI help
   -t, --token=token  (required) Heroku api token
   -v, --version      show CLI version
+
+EXAMPLE
+  $ herokudep -t heroku token
 ```
 
-_See code: [src/commands/start.ts](https://github.com/banphlet/herokudep/blob/v0.0.4/src/commands/start.ts)_
+_See code: [src/commands/start.ts](https://github.com/banphlet/herokudep/blob/v0.1.0/src/commands/start.ts)_
 <!-- commandsstop -->
+
+
+
+HAPPY HACKING ❤
