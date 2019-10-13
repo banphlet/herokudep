@@ -15,19 +15,18 @@ const simpleGit = git().outputHandler((_: any, stdout: any, stderr: any) => {
 })
 
 export default class Deploy extends Command {
-  static description = 'Deploy heroku applications using one command'
-  static usage = 'deploy -t your-token-here -a heroku-app-name'
+  static description = 'Deploy heroku applications using one command.'
   static examples = [
-    '$ herokudep deploy -t dsfsdfsdfsdf -a test-app',
+    '$ herokudep deploy -t heroku-token -a heroku-app',
+    '$ herokudep deploy -t heroku-token -a heroku-app -s // pass -s to skip checking application health'
   ]
 
   static flags = {
-    // add --version flag to shocw CLI version
     version: flags.version({ char: 'v' }),
     help: flags.help({ char: 'h' }),
-    remote: flags.remote(),
     app: flags.app({ char: 'a', required: true }),
-    token: flags.app({ char: 't', required: true, description: 'Heroku api token' })
+    token: flags.app({ char: 't', required: true, description: 'Heroku api token' }),
+    skipHealthCheck: flags.app({ char: "s", default: "false", description: "Skip checking /health endpoint for application health status" })
   }
 
   rollbackDeployment = async (error: any) => {
@@ -56,6 +55,8 @@ export default class Deploy extends Command {
     debug('Push to heroku master')
     this.log('Deploying heroku application')
     await simpleGit.push(formHerokuGitUrl(token, app), 'master', { '--force': true }).catch((error: any) => this.error(`Error pushing to heroku ${error.message}`))
+    if (flags.skipHealthCheck) return this.log('Deployment to heroku succeeded :)')
+
     return checkApplicationHealth(app).then(() => this.log('Deployment to heroku succeeded :)')).catch(this.rollbackDeployment)
   }
 }

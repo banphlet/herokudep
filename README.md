@@ -34,7 +34,7 @@ USAGE
 
 ## `herokudep deploy`
 
-Deploy heroku applications using one command.
+Deploy heroku applications using one command. 
 
 ```
 USAGE
@@ -91,6 +91,6 @@ EXAMPLE
 _See code: [src/commands/start.ts](https://github.com/banphlet/herokudep/blob/v0.1.0/src/commands/start.ts)_
 <!-- commandsstop -->
 
-
+See examples here (examples)[/examples]
 
 HAPPY HACKING ❤

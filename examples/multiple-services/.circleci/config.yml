@@ -1,0 +1,18 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8.11.4
+
+    working_directory: ~/app
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+
+      - run:
+          name: Deploy to heroku
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              npx @banphlet/herokudep deploy -t ${HEROKU_API_KEY}  -a ${HEROKU_APP_NAME}
+            fi

@@ -1,0 +1,20 @@
+{
+    "apps": [
+        {
+            "name": "herokudeploy-app",
+            // procfile command
+            "web": "node index.js"
+        },
+        {
+            "name": "herokudeploy-worker1",
+            // procfile command
+            "web": "node worker1.js"
+        },
+        {
+            // heroku app name
+            "name": "herokudeploy-worker1",
+            // procfile command
+            "web": "node worker2.js"
+        }
+    ]
+}
