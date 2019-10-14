@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 const debug = require('debug')('@strellio/dep-heroku')
-import {Command, flags} from '@heroku-cli/command'
+import { Command, flags } from '@heroku-cli/command'
 import * as git from 'simple-git/promise'
 
-import {parseString, readServicesJson, writeFile} from '../utils'
+import { parseString, readServicesJson, writeFile } from '../utils'
 
 import Deploy from './deploy'
 
@@ -15,7 +15,8 @@ const simpleGit = git().outputHandler((_: any, stdout: any, stderr: any) => {
 interface AppsInterface {
   name: string,
   web?: string,
-  release?: string
+  release?: string,
+  worker?: string
 }
 
 export default class Start extends Command {
@@ -25,13 +26,13 @@ export default class Start extends Command {
   ]
   static flags = {
     // add --version flag to shocw CLI version
-    version: flags.version({char: 'v'}),
-    help: flags.help({char: 'h'}),
-    token: flags.app({char: 't', required: true, description: 'Heroku api token'})
+    version: flags.version({ char: 'v' }),
+    help: flags.help({ char: 'h' }),
+    token: flags.app({ char: 't', required: true, description: 'Heroku api token' })
   }
 
   async run() {
-    const {flags} = this.parse(Start)
+    const { flags } = this.parse(Start)
     debug('Reading services.json file')
     const servicesJson = await readServicesJson(this.error)
     if (!servicesJson) return this.error('services.json cannot be empty')
@@ -44,6 +45,7 @@ export default class Start extends Command {
       let profileCommands = ''
       if (app.web) profileCommands += `web: ${app.web} \n`
       if (app.release) profileCommands += `release: ${app.release}`
+      if (app.worker) profileCommands += `worker: ${app.worker}`
       writeFile(profileCommands)
       await simpleGit.raw(['config', 'user.email', 'herokudep@herokuap.com'])
       await simpleGit.raw(['config', 'user.name', 'herokudep'])
