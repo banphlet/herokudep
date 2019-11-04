@@ -93,4 +93,4 @@ _See code: [src/commands/start.ts](https://github.com/banphlet/herokudep/blob/v0
 
 See examples here [examples](/examples)
 
-HAPPY HACKING ❤
+HAPPY HACKING ❤ 
