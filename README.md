@@ -8,7 +8,7 @@ Simple Cli for managing heroku deployments. This Cli allows you to deploy single
 [![Downloads/week](https://img.shields.io/npm/dw/@banphlet/herokudep.svg)](https://npmjs.org/package/@banphlet/herokudep)
 [![License](https://img.shields.io/npm/l/@banphlet/herokudep.svg)](https://github.com/banphlet/herokudep/blob/master/package.json)
 
-<!-- toc -->
+<!---- toc -->
 * [Usage](#usage)
 * [Commands](#commands)
 <!-- tocstop -->
