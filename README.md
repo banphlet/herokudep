@@ -11,7 +11,7 @@ Simple Cli for managing heroku deployments. This Cli allows you to deploy single
 <!---- toc -->
 * [Usage](#usage)
 * [Commands](#commands)
-<!-- tocstop -->
+<!-- tocstop --->
 # Usage
 <!-- usage -->
 ```sh-session
