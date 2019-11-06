@@ -13,7 +13,7 @@ Simple Cli for managing heroku deployments. This Cli allows you to deploy single
 * [Commands](#commands)
 <!-- tocstop --->
 # Usage
-<!-- usage -->
+<!-- usage --->
 ```sh-session
 $ npm install -g @banphlet/herokudep
 $ herokudep COMMAND
